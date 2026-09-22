@@ -1,0 +1,64 @@
+{
+  "title": "Settings",
+  "tabs": {
+    "general": "General",
+    "fileManager": "File Manager",
+    "updates": "Updates",
+    "privacy": "Privacy"
+  },
+  "common": {
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "close": "Close",
+    "devices": {
+      "computer": "Computer",
+      "phone": "Phone"
+    }
+  },
+  "general": {
+    "language": {
+      "label": "Language",
+      "options": {
+        "english": "English",
+        "simplifiedChinese": "简体中文"
+      }
+    },
+    "theme": {
+      "label": "Theme",
+      "options": {
+        "light": "Light",
+        "dark": "Dark",
+        "auto": "Auto"
+      }
+    },
+    "mtpMode": "MTP Mode",
+    "usbHotplug": "Enable auto device detection (USB Hotplug)"
+  },
+  "fileManager": {
+    "showHiddenFiles": "Show hidden files",
+    "viewAsGrid": "View as grid",
+    "overallProgress": "Display overall progress on the file transfer screen",
+    "transferTo": "To {{device}}",
+    "onboarding": {
+      "toggleHint": "Use the toggles to enable or disable an item.",
+      "scrollHint": "Scroll down for more Settings."
+    },
+    "overallProgressNote": "Note: To fetch the total transfer information, the files need to be processed first. It may take a few seconds to a few minutes depending on the total number of files to be copied.",
+    "showDirectoriesFirst": "Show directories first",
+    "showStatusBar": "Show status bar",
+    "showLocalPane": "Show Local Disk pane",
+    "localPaneDragNote": "Note: You can drag files from the Finder into the Mobile pane but not the other way around.",
+    "showLocalPaneOnLeft": "Show Local Disk pane on the left side"
+  },
+  "updates": {
+    "autoCheck": "Automatically check for updates",
+    "autoDownload": "Automatically download the new updates when available (recommended)",
+    "betaChannel": "Enable beta update channel",
+    "betaWarning": "Early access preview of the upcoming features but might result in crashes."
+  },
+  "privacy": {
+    "analytics": "Enable anonymous usage statistics gathering",
+    "description": "We do not gather any kind of personal information and neither do we sell your data. We use this information only to improve the User Experience and squash some bugs.",
+    "learnMore": "Learn more..."
+  }
+}

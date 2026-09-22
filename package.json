@@ -33,6 +33,7 @@
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.*{js,jsx,json}'",
     "postlint-styles-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{css,scss}'",
+    "test:i18n": "cross-env NODE_ENV=test node -r @babel/register ./internals/scripts/test-i18n.js",
     "preinstall": "internals/scripts/preinstall.sh",
     "postinstall": "yarn build-dll && electron-builder install-app-deps"
   },
@@ -92,6 +93,7 @@
     "glob": "^7.2.0",
     "history": "^5.2.0",
     "hotkeys-js": "^3.8.7",
+    "i18next": "23.16.8",
     "junk": "^3.1.0",
     "koffi": "^2.8.7",
     "lodash": "^4.17.21",
@@ -109,6 +111,7 @@
     "react": "^17.0.2",
     "react-dom": "npm:@hot-loader/react-dom",
     "react-helmet": "^6.1.0",
+    "react-i18next": "13.5.0",
     "react-redux": "^5.0.7",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
