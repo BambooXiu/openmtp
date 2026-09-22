@@ -16,6 +16,10 @@ import Switch from '@material-ui/core/Switch';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import { withTranslation } from 'react-i18next';
 import { DEVICES_LABEL } from '../../../constants';
 import SettingsDialogTabContainer from './SettingsDialogTabContainer';
 import {
@@ -28,10 +32,11 @@ import {
 import { capitalize, isPrereleaseVersion } from '../../../utils/funcs';
 import { IpcEvents } from '../../../services/ipc-events/IpcEventType';
 import { isKalamModeSupported } from '../../../helpers/binaries';
+import { APP_LANGUAGE } from '../../../i18n/language';
 
 const isMas = electronIs.mas();
 
-export default class SettingsDialog extends PureComponent {
+export class SettingsDialog extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -70,6 +75,7 @@ export default class SettingsDialog extends PureComponent {
       freshInstall,
       hideHiddenFiles,
       fileExplorerListingType,
+      appLanguage,
       appThemeMode,
       styles,
       enableAutoUpdateCheck,
@@ -83,6 +89,7 @@ export default class SettingsDialog extends PureComponent {
       mtpMode,
       filesPreprocessingBeforeTransfer,
       onAnalyticsChange,
+      onAppLanguageChange,
       onHiddenFilesChange,
       onFileExplorerListingType,
       onDialogBoxCloseBtnClick,
@@ -98,6 +105,7 @@ export default class SettingsDialog extends PureComponent {
       onFilesPreprocessingBeforeTransferChange,
       onEnableUsbHotplug,
       enableUsbHotplug,
+      t,
     } = this.props;
 
     const { tabIndex } = this.state;
@@ -127,7 +135,7 @@ export default class SettingsDialog extends PureComponent {
         }
       >
         <Typography variant="h5" className={styles.title}>
-          Settings
+          {t('title')}
         </Typography>
         <DialogContent>
           <Tabs
@@ -140,16 +148,16 @@ export default class SettingsDialog extends PureComponent {
             scrollButtons="auto"
           >
             {this.shoudThisTabHeadRender(0) && (
-              <Tab label="General" className={styles.tab} />
+              <Tab label={t('tabs.general')} className={styles.tab} />
             )}
             {this.shoudThisTabHeadRender(1) && (
-              <Tab label="File Manager" className={styles.tab} />
+              <Tab label={t('tabs.fileManager')} className={styles.tab} />
             )}
             {this.shoudThisTabHeadRender(2) && (
-              <Tab label="Updates" className={styles.tab} />
+              <Tab label={t('tabs.updates')} className={styles.tab} />
             )}
             {this.shoudThisTabHeadRender(3) && (
-              <Tab label="Privacy" className={styles.tab} />
+              <Tab label={t('tabs.privacy')} className={styles.tab} />
             )}
           </Tabs>
 
@@ -159,8 +167,26 @@ export default class SettingsDialog extends PureComponent {
               <SettingsDialogTabContainer>
                 <div className={styles.tabContainer}>
                   <FormGroup>
+                    <FormControl className={styles.languageControl}>
+                      <InputLabel id="app-language-label">
+                        {t('general.language.label')}
+                      </InputLabel>
+                      <Select
+                        labelId="app-language-label"
+                        id="app-language"
+                        value={appLanguage}
+                        onChange={onAppLanguageChange}
+                      >
+                        <MenuItem value={APP_LANGUAGE.english}>
+                          {t('general.language.options.english')}
+                        </MenuItem>
+                        <MenuItem value={APP_LANGUAGE.simplifiedChinese}>
+                          {t('general.language.options.simplifiedChinese')}
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
                     <Typography variant="subtitle2" className={styles.subtitle}>
-                      Theme
+                      {t('general.theme.label')}
                     </Typography>
                     <RadioGroup
                       aria-label="app-theme-mode"
@@ -171,17 +197,17 @@ export default class SettingsDialog extends PureComponent {
                       <FormControlLabel
                         value={APP_THEME_MODE_TYPE.light}
                         control={<Radio />}
-                        label="Light"
+                        label={t('general.theme.options.light')}
                       />
                       <FormControlLabel
                         value={APP_THEME_MODE_TYPE.dark}
                         control={<Radio />}
-                        label="Dark"
+                        label={t('general.theme.options.dark')}
                       />
                       <FormControlLabel
                         value={APP_THEME_MODE_TYPE.auto}
                         control={<Radio />}
-                        label="Auto"
+                        label={t('general.theme.options.auto')}
                       />
                     </RadioGroup>
 
@@ -191,7 +217,7 @@ export default class SettingsDialog extends PureComponent {
                           variant="subtitle2"
                           className={`${styles.subtitle}  ${styles.fmSettingsStylesFix}`}
                         >
-                          MTP Mode
+                          {t('general.mtpMode')}
                         </Typography>
                         <RadioGroup
                           aria-label="app-theme-mode"
@@ -219,7 +245,7 @@ export default class SettingsDialog extends PureComponent {
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      Enable auto device detection (USB Hotplug)
+                      {t('general.usbHotplug')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -231,7 +257,11 @@ export default class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={enableUsbHotplug ? `Enabled` : `Disabled`}
+                      label={
+                        enableUsbHotplug
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
                   </FormGroup>
                 </div>
@@ -635,3 +665,5 @@ export default class SettingsDialog extends PureComponent {
     );
   }
 }
+
+export default withTranslation('settings')(SettingsDialog);

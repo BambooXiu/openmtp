@@ -24,6 +24,10 @@ export const styles = (theme) => ({
     marginTop: 10,
   },
   subtitle: {},
+  languageControl: {
+    minWidth: 200,
+    marginBottom: 20,
+  },
   fmSettingsStylesFix: {
     marginTop: 10,
   },

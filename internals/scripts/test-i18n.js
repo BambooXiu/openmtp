@@ -1,4 +1,6 @@
 const assert = require('assert');
+const { readFileSync } = require('fs');
+const { resolve } = require('path');
 
 const {
   APP_LANGUAGE,
@@ -14,6 +16,14 @@ const {
 const { bootstrapAppLanguage } = require('../../app/i18n/bootstrap');
 const enSettings = require('../../app/i18n/locales/en/settings.json');
 const zhCnSettings = require('../../app/i18n/locales/zh-CN/settings.json');
+
+const settingsDialogSource = readFileSync(
+  resolve(
+    __dirname,
+    '../../app/containers/Settings/components/SettingsDialog.jsx'
+  ),
+  'utf8'
+);
 
 const tests = [];
 
@@ -137,6 +147,33 @@ test('bootstrap 对非法持久化语言使用英文且不执行额外副作用'
   assert.strictEqual(appLanguage, APP_LANGUAGE.english);
   assert.deepStrictEqual(hydratedLanguages, [APP_LANGUAGE.english]);
   assert.deepStrictEqual(initializedLanguages, [APP_LANGUAGE.english]);
+});
+
+test('设置窗口接入 react-i18next 和语言选择文案', () => {
+  const requiredFragments = [
+    "withTranslation('settings')",
+    "t('title')",
+    "t('tabs.general')",
+    "t('tabs.fileManager')",
+    "t('tabs.updates')",
+    "t('tabs.privacy')",
+    "t('general.language.label')",
+    "t('general.language.options.english')",
+    "t('general.language.options.simplifiedChinese')",
+    "t('general.theme.label')",
+    "t('general.theme.options.light')",
+    "t('general.theme.options.dark')",
+    "t('general.theme.options.auto')",
+    "t('general.mtpMode')",
+    "t('general.usbHotplug')",
+  ];
+
+  requiredFragments.forEach((fragment) => {
+    assert.ok(
+      settingsDialogSource.includes(fragment),
+      `SettingsDialog missing ${fragment}`
+    );
+  });
 });
 
 const run = () => {
