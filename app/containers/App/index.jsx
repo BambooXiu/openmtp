@@ -21,10 +21,12 @@ import { withReducer } from '../../store/reducers/withReducer';
 import reducers from './reducers';
 import { copyJsonFileToSettings, freshInstall } from '../Settings/actions';
 import {
+  makeAppLanguage,
   makeAppThemeMode,
   makeAppThemeModeSettings,
   makeMtpMode,
 } from '../Settings/selectors';
+import { changeAppLanguage } from '../../i18n';
 import { getAppThemeMode } from '../../helpers/theme';
 import { getMainWindowRendererProcess } from '../../helpers/windowHelper';
 import { log } from '../../utils/log';
@@ -61,6 +63,14 @@ class App extends Component {
       bootLoader.cleanRotationFiles();
     } catch (e) {
       log.error(e, `App -> componentDidMount`);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { appLanguage } = this.props;
+
+    if (prevProps.appLanguage !== appLanguage) {
+      changeAppLanguage(appLanguage);
     }
   }
 
@@ -183,6 +193,7 @@ const mapDispatchToProps = (dispatch) =>
 
 const mapStateToProps = (state) => {
   return {
+    appLanguage: makeAppLanguage(state),
     appThemeModeSettings: makeAppThemeModeSettings(state),
     appThemeMode: makeAppThemeMode(state),
     mtpDevice: makeMtpDevice(state),
