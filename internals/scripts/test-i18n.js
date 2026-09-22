@@ -176,6 +176,42 @@ test('设置窗口接入 react-i18next 和语言选择文案', () => {
   });
 });
 
+test('设置窗口其余页签使用完整翻译键', () => {
+  const requiredFragments = [
+    "t('common.devices.computer')",
+    "t('common.devices.phone')",
+    "t('fileManager.showHiddenFiles')",
+    "t('fileManager.viewAsGrid')",
+    "t('fileManager.overallProgress')",
+    "t('fileManager.transferTo'",
+    "t('fileManager.onboarding.toggleHint')",
+    "t('fileManager.onboarding.scrollHint')",
+    "t('fileManager.overallProgressNote')",
+    "t('fileManager.showDirectoriesFirst')",
+    "t('fileManager.showStatusBar')",
+    "t('fileManager.showLocalPane')",
+    "t('fileManager.localPaneDragNote')",
+    "t('fileManager.showLocalPaneOnLeft')",
+    "t('updates.autoCheck')",
+    "t('updates.autoDownload')",
+    "t('updates.betaChannel')",
+    "t('updates.betaWarning')",
+    "t('privacy.analytics')",
+    "t('privacy.description')",
+    "t('privacy.learnMore')",
+    "t('common.close')",
+  ];
+
+  requiredFragments.forEach((fragment) => {
+    assert.ok(
+      settingsDialogSource.includes(fragment),
+      `SettingsDialog missing ${fragment}`
+    );
+  });
+
+  assert.ok(!settingsDialogSource.includes('DEVICES_LABEL'));
+});
+
 const run = () => {
   return tests
     .reduce(

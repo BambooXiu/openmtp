@@ -20,7 +20,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { withTranslation } from 'react-i18next';
-import { DEVICES_LABEL } from '../../../constants';
 import SettingsDialogTabContainer from './SettingsDialogTabContainer';
 import {
   DEVICE_TYPE,
@@ -120,6 +119,8 @@ export class SettingsDialog extends PureComponent {
       fileExplorerListingType[DEVICE_TYPE.mtp] === FILE_EXPLORER_VIEW_TYPE.grid;
 
     const showMtpModeSelection = isKalamModeSupported();
+    const computerLabel = t('common.devices.computer');
+    const phoneLabel = t('common.devices.phone');
 
     return (
       <Dialog
@@ -274,7 +275,7 @@ export class SettingsDialog extends PureComponent {
                 <div className={styles.tabContainer}>
                   <FormGroup>
                     <Typography variant="subtitle2" className={styles.subtitle}>
-                      Show hidden files
+                      {t('fileManager.showHiddenFiles')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -290,7 +291,7 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={DEVICES_LABEL[DEVICE_TYPE.local]}
+                      label={computerLabel}
                     />
                     <FormControlLabel
                       className={styles.switch}
@@ -306,14 +307,14 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={DEVICES_LABEL[DEVICE_TYPE.mtp]}
+                      label={phoneLabel}
                     />
 
                     <Typography
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      View as grid
+                      {t('fileManager.viewAsGrid')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -331,7 +332,7 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={DEVICES_LABEL[DEVICE_TYPE.local]}
+                      label={computerLabel}
                     />
                     <FormControlLabel
                       className={styles.switch}
@@ -349,14 +350,14 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={DEVICES_LABEL[DEVICE_TYPE.mtp]}
+                      label={phoneLabel}
                     />
 
                     <Typography
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      Display overall progress on the file transfer screen
+                      {t('fileManager.overallProgress')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -378,7 +379,9 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={`To ${DEVICES_LABEL[DEVICE_TYPE.local]}`}
+                      label={t('fileManager.transferTo', {
+                        device: computerLabel,
+                      })}
                     />
                     <FormControlLabel
                       className={styles.switch}
@@ -400,7 +403,9 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={`To ${DEVICES_LABEL[DEVICE_TYPE.mtp]}`}
+                      label={t('fileManager.transferTo', {
+                        device: phoneLabel,
+                      })}
                     />
 
                     {freshInstall ? (
@@ -413,28 +418,26 @@ export class SettingsDialog extends PureComponent {
                           className={`${styles.onboardingPaperBody}`}
                         >
                           <span className={`${styles.onboardingPaperBodyItem}`}>
-                            &#9679;&nbsp;Use the toggles to enable or disable an
-                            item.
+                            &#9679;&nbsp;
+                            {t('fileManager.onboarding.toggleHint')}
                           </span>
                           <span className={`${styles.onboardingPaperBodyItem}`}>
-                            &#9679;&nbsp;Scroll down for more Settings.
+                            &#9679;&nbsp;
+                            {t('fileManager.onboarding.scrollHint')}
                           </span>
                         </Typography>
                       </Paper>
                     ) : null}
 
                     <Typography variant="caption">
-                      Note: To fetch the total transfer information, the files
-                      need to be processed first. It may take a few seconds to a
-                      few minutes depending on the total number of files to be
-                      copied.
+                      {t('fileManager.overallProgressNote')}
                     </Typography>
 
                     <Typography
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      Show directories first
+                      {t('fileManager.showDirectoriesFirst')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -449,14 +452,18 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={showDirectoriesFirst ? `Enabled` : `Disabled`}
+                      label={
+                        showDirectoriesFirst
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
 
                     <Typography
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      Show status bar
+                      {t('fileManager.showStatusBar')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -468,14 +475,18 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={enableStatusBar ? `Enabled` : `Disabled`}
+                      label={
+                        enableStatusBar
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
 
                     <Typography
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      Show Local Disk pane
+                      {t('fileManager.showLocalPane')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -487,18 +498,21 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={showLocalPane ? `Enabled` : `Disabled`}
+                      label={
+                        showLocalPane
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
                     <Typography variant="caption">
-                      Note: You can drag files from the Finder into the Mobile
-                      pane but not the other way around.
+                      {t('fileManager.localPaneDragNote')}
                     </Typography>
 
                     <Typography
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.fmSettingsStylesFix}`}
                     >
-                      Show Local Disk pane on the left side
+                      {t('fileManager.showLocalPaneOnLeft')}
                     </Typography>
                     <FormControlLabel
                       className={styles.switch}
@@ -513,7 +527,11 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={showLocalPaneOnLeftSide ? `Enabled` : `Disabled`}
+                      label={
+                        showLocalPaneOnLeftSide
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
                   </FormGroup>
                 </div>
@@ -527,7 +545,7 @@ export class SettingsDialog extends PureComponent {
                 <div className={styles.tabContainer}>
                   <FormGroup>
                     <Typography variant="subtitle2" className={styles.subtitle}>
-                      Automatically check for updates
+                      {t('updates.autoCheck')}
                     </Typography>
 
                     <FormControlLabel
@@ -540,14 +558,17 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={enableAutoUpdateCheck ? `Enabled` : `Disabled`}
+                      label={
+                        enableAutoUpdateCheck
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
                   </FormGroup>
 
                   <FormGroup>
                     <Typography variant="subtitle2" className={styles.subtitle}>
-                      Automatically download the new updates when available
-                      (recommended)
+                      {t('updates.autoDownload')}
                     </Typography>
 
                     <FormControlLabel
@@ -565,7 +586,9 @@ export class SettingsDialog extends PureComponent {
                         />
                       }
                       label={
-                        enableBackgroundAutoUpdate ? `Enabled` : `Disabled`
+                        enableBackgroundAutoUpdate
+                          ? t('common.enabled')
+                          : t('common.disabled')
                       }
                     />
                   </FormGroup>
@@ -575,7 +598,7 @@ export class SettingsDialog extends PureComponent {
                       variant="subtitle2"
                       className={`${styles.subtitle} ${styles.subtitleMarginFix}`}
                     >
-                      Enable beta update channel
+                      {t('updates.betaChannel')}
                     </Typography>
 
                     <FormControlLabel
@@ -592,12 +615,15 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={enablePrereleaseUpdates ? `Enabled` : `Disabled`}
+                      label={
+                        enablePrereleaseUpdates
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
                   </FormGroup>
                   <Typography variant="caption">
-                    Early access preview of the upcoming features but might
-                    result in crashes.
+                    {t('updates.betaWarning')}
                   </Typography>
                 </div>
               </SettingsDialogTabContainer>
@@ -610,7 +636,7 @@ export class SettingsDialog extends PureComponent {
                 <div className={styles.tabContainer}>
                   <FormGroup>
                     <Typography variant="subtitle2" className={styles.subtitle}>
-                      Enable anonymous usage statistics gathering
+                      {t('privacy.analytics')}
                     </Typography>
 
                     <FormControlLabel
@@ -623,12 +649,14 @@ export class SettingsDialog extends PureComponent {
                           }
                         />
                       }
-                      label={enableAnalytics ? `Enabled` : `Disabled`}
+                      label={
+                        enableAnalytics
+                          ? t('common.enabled')
+                          : t('common.disabled')
+                      }
                     />
                     <Typography variant="caption">
-                      We do not gather any kind of personal information and
-                      neither do we sell your data. We use this information only
-                      to improve the User Experience and squash some bugs.&nbsp;
+                      {t('privacy.description')}&nbsp;
                       <a
                         className={styles.a}
                         onClick={() => {
@@ -637,7 +665,7 @@ export class SettingsDialog extends PureComponent {
                           );
                         }}
                       >
-                        Learn more...
+                        {t('privacy.learnMore')}
                       </a>
                     </Typography>
                   </FormGroup>
@@ -658,7 +686,7 @@ export class SettingsDialog extends PureComponent {
             color="primary"
             className={classNames(styles.btnPositive)}
           >
-            Close
+            {t('common.close')}
           </Button>
         </DialogActions>
       </Dialog>
