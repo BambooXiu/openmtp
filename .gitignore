@@ -35,6 +35,7 @@ app/node_modules
 # flow-typed
 flow-typed/npm/*
 !flow-typed/npm/module_vx.x.x.js
+.mcp.json
 
 # App packaged
 release
