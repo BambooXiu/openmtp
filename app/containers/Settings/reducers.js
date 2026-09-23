@@ -8,6 +8,7 @@ import {
 } from '../../enums';
 import { checkIf } from '../../utils/checkIf';
 import { isPrereleaseVersion } from '../../utils/funcs';
+import { DEFAULT_APP_LANGUAGE } from '../../i18n/language';
 
 export const initialState = {
   freshInstall: 0,
@@ -30,6 +31,7 @@ export const initialState = {
     [DEVICE_TYPE.local]: FILE_EXPLORER_VIEW_TYPE.grid,
     [DEVICE_TYPE.mtp]: FILE_EXPLORER_VIEW_TYPE.grid,
   },
+  appLanguage: DEFAULT_APP_LANGUAGE,
   appThemeMode: APP_THEME_MODE_TYPE.auto,
   showLocalPane: true,
   showLocalPaneOnLeftSide: true,

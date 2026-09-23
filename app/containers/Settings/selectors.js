@@ -55,6 +55,10 @@ export const makeEnableStatusBar = createSelector(make, (state) =>
   state ? state.enableStatusBar : initialState.enableStatusBar
 );
 
+export const makeAppLanguage = createSelector(make, (state) =>
+  state ? state.appLanguage : initialState.appLanguage
+);
+
 // returns the app theme mode setting value (light, dark, auto)
 export const makeAppThemeModeSettings = createSelector(make, (state) =>
   state ? state.appThemeMode : initialState.appThemeMode

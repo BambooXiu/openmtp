@@ -1,0 +1,64 @@
+{
+  "title": "设置",
+  "tabs": {
+    "general": "常规",
+    "fileManager": "文件管理",
+    "updates": "更新",
+    "privacy": "隐私"
+  },
+  "common": {
+    "enabled": "已启用",
+    "disabled": "已禁用",
+    "close": "关闭",
+    "devices": {
+      "computer": "电脑",
+      "phone": "手机"
+    }
+  },
+  "general": {
+    "language": {
+      "label": "语言",
+      "options": {
+        "english": "English",
+        "simplifiedChinese": "简体中文"
+      }
+    },
+    "theme": {
+      "label": "主题",
+      "options": {
+        "light": "浅色",
+        "dark": "深色",
+        "auto": "跟随系统"
+      }
+    },
+    "mtpMode": "MTP 模式",
+    "usbHotplug": "启用设备自动检测（USB 热插拔）"
+  },
+  "fileManager": {
+    "showHiddenFiles": "显示隐藏文件",
+    "viewAsGrid": "使用网格视图",
+    "overallProgress": "在文件传输界面显示总进度",
+    "transferTo": "传输到{{device}}",
+    "onboarding": {
+      "toggleHint": "使用开关启用或禁用选项。",
+      "scrollHint": "向下滚动可查看更多设置。"
+    },
+    "overallProgressNote": "注意：要获取完整的传输信息，需要先处理文件。根据待复制文件总数，此过程可能需要几秒到几分钟。",
+    "showDirectoriesFirst": "优先显示文件夹",
+    "showStatusBar": "显示状态栏",
+    "showLocalPane": "显示本地磁盘面板",
+    "localPaneDragNote": "注意：你可以将文件从“访达”拖入手机面板，但不能反向拖动。",
+    "showLocalPaneOnLeft": "在左侧显示本地磁盘面板"
+  },
+  "updates": {
+    "autoCheck": "自动检查更新",
+    "autoDownload": "有新版本时自动下载更新（推荐）",
+    "betaChannel": "启用测试版更新通道",
+    "betaWarning": "可提前体验即将发布的功能，但可能导致应用崩溃。"
+  },
+  "privacy": {
+    "analytics": "启用匿名使用情况统计",
+    "description": "我们不会收集任何个人信息，也不会出售你的数据。我们仅使用这些信息来改善用户体验并修复问题。",
+    "learnMore": "了解更多..."
+  }
+}

@@ -20,7 +20,7 @@ import {
   makeCurrentBrowsePath,
   makeMtpStoragesList,
 } from '../HomePage/selectors';
-import SettingsDialog from './components/SettingsDialog';
+import SettingsDialogComponent from './components/SettingsDialog';
 import { checkIf } from '../../utils/checkIf';
 import { FILE_TRANSFER_DIRECTION } from '../../enums';
 
@@ -106,6 +106,13 @@ class Settings extends Component {
       },
       deviceType
     );
+  };
+
+  _handleAppLanguageChange = (event) => {
+    this._handleSetCommonSettingsChange({
+      key: 'appLanguage',
+      value: event.target.value,
+    });
   };
 
   _handleStatusBarChange = (event, value, deviceType) => {
@@ -200,13 +207,14 @@ class Settings extends Component {
     const showSettings = toggleSettings || freshInstall !== 0;
 
     return (
-      <SettingsDialog
+      <SettingsDialogComponent
         open={showSettings}
         freshInstall={freshInstall}
         toggleSettings={toggleSettings}
         styles={styles}
         enablePrereleaseUpdates={enablePrereleaseUpdates}
         onAnalyticsChange={this._handleAnalyticsChange}
+        onAppLanguageChange={this._handleAppLanguageChange}
         onHiddenFilesChange={this._handleHiddenFilesChange}
         onFileExplorerListingType={this._handleFileExplorerListingType}
         onDialogBoxCloseBtnClick={this._handleDialogBoxCloseBtnClick}

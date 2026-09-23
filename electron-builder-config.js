@@ -51,7 +51,7 @@ module.exports = () => {
     copyright: '© Ganesh Rathinavel',
     afterPack: './internals/scripts/AfterPack.js',
     afterSign: './internals/scripts/Notarize.js',
-    npmRebuild: false,
+    npmRebuild: true,
     publish: [
       {
         provider: 'github',
