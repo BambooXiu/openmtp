@@ -33,6 +33,7 @@
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.*{js,jsx,json}'",
     "postlint-styles-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{css,scss}'",
+    "test:native": "cross-env ELECTRON_RUN_AS_NODE=1 electron ./internals/scripts/test-native-dependencies.js",
     "test:i18n": "cross-env NODE_ENV=test ELECTRON_RUN_AS_NODE=1 electron -r @babel/register ./internals/scripts/test-i18n.js",
     "preinstall": "internals/scripts/preinstall.sh",
     "postinstall": "yarn build-dll && electron-builder install-app-deps"
